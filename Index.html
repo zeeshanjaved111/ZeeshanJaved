@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rebecca Alexander</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Open Sans',sans-serif; background:#fff; color:#111B3A; }
+    h1,h2,h3,h4,h5 { font-family:'Montserrat',sans-serif; }
+    .text-navy { color:#111B3A; }
+    .bg-navy { background-color:#111B3A; }
+    .bg-cream { background-color:#E6D8C3; }
+    .text-cream { color:#E6D8C3; }
+    .btn-primary {
+      background:transparent; color:#111B3A; border:2px solid #111B3A;
+      padding:14px 36px; border-radius:0; font-weight:700; text-transform:uppercase;
+      letter-spacing:0.5px; transition:all 0.3s ease; display:inline-block; font-size:0.85rem;
+    }
+    .btn-primary:hover { background:#111B3A; color:#fff; }
+    .btn-primary-white {
+      background:transparent; color:#fff; border:2px solid #fff;
+      padding:14px 36px; border-radius:0; font-weight:700; text-transform:uppercase;
+      letter-spacing:0.5px; transition:all 0.3s ease; display:inline-block; font-size:0.85rem;
+    }
+    .btn-primary-white:hover { background:#fff; color:#111B3A; }
+    .navbar {
+      position:fixed; top:0; left:0; width:100%; z-index:50;
+      padding:16px 40px; display:flex; align-items:center; justify-content:space-between;
+      transition:all 0.3s ease; background:rgba(17,27,58,0.95);
+    }
+    .nav-logo { height:50px; }
+    .nav-links { display:flex; align-items:center; gap:24px; }
+    .nav-links a {
+      color:#fff; font-size:0.7rem; font-weight:600; text-transform:uppercase;
+      letter-spacing:0.08em; text-decoration:none; transition:opacity 0.2s;
+    }
+    .nav-links a:hover { opacity:0.7; }
+    .nav-social { display:flex; align-items:center; gap:12px; }
+    .nav-social a { color:#fff; font-size:0.9rem; transition:opacity 0.2s; }
+    .nav-social a:hover { opacity:0.7; }
+    .hero-section {
+      position:relative; min-height:95vh; display:flex; align-items:center; justify-content:center;
+      background-size:cover; background-position:center; padding:120px 0 80px;
+    }
+    .hero-overlay { position:absolute; inset:0; background:rgba(17,27,58,0.44); }
+    .hero-content { position:relative; z-index:2; text-align:center; color:#fff; max-width:900px; padding:0 20px; }
+    .hero-content h1 { font-size:clamp(1.5rem,3.5vw,2.5rem); font-weight:700; text-transform:uppercase; letter-spacing:0.1em; line-height:1.3; }
+    .section-padding { padding:80px 0; }
+    @media (max-width:768px) { .section-padding { padding:50px 0; } }
+    .max-w-1200 { max-width:1200px; margin:0 auto; }
+    .section-title-sm { font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; }
+    .section-title-lg { font-size:clamp(1.5rem,3vw,2.5rem); font-weight:800; text-transform:uppercase; letter-spacing:0.03em; line-height:1.2; }
+    .divider-line { width:50px; height:2px; background:#E6D8C3; margin:16px 0; }
+    .service-card { position:relative; overflow:hidden; }
+    .service-card img { width:100%; display:block; }
+    .service-card-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top,rgba(17,27,58,0.9) 0%,rgba(17,27,58,0.2) 60%);
+      display:flex; flex-direction:column; justify-content:flex-end; padding:30px 24px;
+      color:#fff; transition:all 0.3s ease;
+    }
+    .service-card-overlay h3 { font-size:1.1rem; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px; }
+    .service-card-overlay p { font-size:0.8rem; opacity:0.85; max-width:95%; line-height:1.5; }
+    .service-card-overlay .learn-link { margin-top:8px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#E6D8C3; text-decoration:none; }
+    .service-card-overlay .learn-link:hover { text-decoration:underline; }
+    .featured-logo { height:28px; filter:grayscale(1) brightness(10); opacity:0.5; }
+    .footer-section h5 { color:#fff; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px; }
+    .footer-section ul { list-style:none; }
+    .footer-section ul li { margin-bottom:8px; }
+    .footer-section ul li a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.85rem; transition:color 0.2s; }
+    .footer-section ul li a:hover { color:#fff; }
+    .fade-up { opacity:0; transform:translateY(30px); transition:all 0.8s ease; }
+    .fade-up.visible { opacity:1; transform:translateY(0); }
+    .breathe-text { font-size:clamp(1.2rem,2.5vw,2rem); font-weight:200; letter-spacing:0.15em; color:#111B3A; opacity:0.1; white-space:nowrap; }
+    .mobile-menu { display:none; }
+    @media (max-width:1024px) { .nav-links, .nav-social .social-icons { display:none; } .mobile-menu-btn { display:block !important; } }
+    @media (min-width:1025px) { .mobile-menu-btn { display:none !important; } }
+    .btn-contact-nav {
+      background:#E6D8C3; color:#111B3A; padding:6px 16px; font-size:0.7rem;
+      font-weight:700; text-transform:uppercase; letter-spacing:0.05em;
+      border-radius:0; text-decoration:none; transition:opacity 0.2s;
+    }
+    .btn-contact-nav:hover { opacity:0.85; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="navbar">
+    <a href="#">
+      <img class="nav-logo" src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/4c389c4f-fd76-4339-a07f-2940533bc97e/Rebecca-Alexander-Logo.png?format=1500w" alt="Rebecca Alexander" />
+    </a>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Therapy with Rebecca</a>
+      <a href="#">Speaking</a>
+      <a href="#">Insight Training</a>
+      <a href="#">Psychotherapy</a>
+      <a href="#">Not Fade Away</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="nav-social">
+      <div class="social-icons" style="display:flex; gap:10px;">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <a href="#" class="btn-contact-nav">Contact</a>
+      <a href="#" class="mobile-menu-btn" style="color:#fff; font-size:1.5rem; text-decoration:none;"><i class="fas fa-bars"></i></a>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 w-full h-full bg-navy z-40 flex-col items-center justify-center gap-6 text-white text-lg uppercase font-semibold" style="display:none;">
+    <a href="#" style="color:#fff; text-decoration:none;">Home</a>
+    <a href="#" style="color:#fff; text-decoration:none;">About</a>
+    <a href="#" style="color:#fff; text-decoration:none;">Therapy with Rebecca</a>
+    <a href="#" style="color:#fff; text-decoration:none;">Speaking</a>
+    <a href="#" style="color:#fff; text-decoration:none;">Insight Training</a>
+    <a href="#" style="color:#fff; text-decoration:none;">Psychotherapy</a>
+    <a href="#" style="color:#fff; text-decoration:none;">Not Fade Away</a>
+    <a href="#" style="color:#fff; text-decoration:none;">Contact</a>
+    <a href="#" id="mobileCloseBtn" style="color:#E6D8C3; text-decoration:none; margin-top:20px; font-size:0.85rem;">CLOSE</a>
+  </div>
+
+  <!-- HERO - Section 1: Full bleed bg image with centered heading, overlay 0.44 -->
+  <section class="hero-section" style="background-image:url('https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/de3d4915-9f02-4b10-90c5-bba80f7a056a/Rebecca-Alexander-Profile.jpg');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>BEYOND BOUNDARIES: EMPOWERMENT &amp; ADVOCACY<br />WITH REBECCA ALEXANDER</h1>
+    </div>
+  </section>
+
+  <!-- Section 2: Meet Rebecca - dark bg, image left + text right -->
+  <section class="section-padding" style="background:#0e162e;">
+    <div class="max-w-1200 px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div class="fade-up">
+        <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/83f9aa8a-fdc2-4180-b3d2-5b368d0d90df/Rebecca-Alexander-Lululemon-Ambassador.jpg" alt="Rebecca Alexander" style="width:100%;" />
+      </div>
+      <div class="fade-up" style="color:#fff;">
+        <p style="font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; opacity:0.8;">A Warrior in Strength &amp; Courage</p>
+        <h2 class="section-title-lg mt-2 text-cream">MEET REBECCA</h2>
+        <div class="divider-line"></div>
+        <p style="font-size:0.95rem; line-height:1.8; opacity:0.8;">An award-winning author, psychotherapist, mental health educator, keynote speaker, disability rights advocate, extreme athlete, and fitness coach, Rebecca Alexander is almost completely blind and deaf. Grateful for every sound, sight, and sense, Rebecca transforms personal adversities into a platform for empowerment and advocacy while educating and inspiring others to navigate and dismantle societal and personal barriers.</p>
+        <a href="#" class="btn-primary-white mt-6">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Services - 3 cards with overlay -->
+  <section class="section-padding bg-white">
+    <div class="max-w-1200 px-6">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="service-card fade-up">
+          <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/dcbd299b-2a54-4336-abf8-d517637e2e18/Rebecca-Alexander-Holding-Cane.jpg" alt="Keynote Speaker" />
+          <div class="service-card-overlay">
+            <h3>Keynote Speaker</h3>
+            <p>A dynamic storyteller on the international speaker circuit, Rebecca is a celebrated member of The Washington Speaker's Bureau.</p>
+            <a href="#" class="learn-link">Learn More</a>
+          </div>
+        </div>
+        <div class="service-card fade-up">
+          <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/ec1cf3c3-b3dd-46ce-9129-3a239e13879b/Rebecca-Alexander-TV-set.jpg" alt="Mental Health Educator" />
+          <div class="service-card-overlay">
+            <h3>Mental Health Educator</h3>
+            <p>Rebecca masterfully crafted an advanced curriculum, Insight with Rebecca Alexander, designed specifically for mental health providers.</p>
+            <a href="#" class="learn-link">Learn More</a>
+          </div>
+        </div>
+        <div class="service-card fade-up">
+          <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/56efa579-ef0c-4e98-9033-0f5ab4b872c3/Rebecca-Alexander-Headshot-Psychotherapy.jpg" alt="Psychotherapist" />
+          <div class="service-card-overlay">
+            <h3>Psychotherapist</h3>
+            <p>Rebecca is a highly interactive, strengths-based psychotherapist with a full-time practice in Manhattan with over 20 years of experience.</p>
+            <a href="#" class="learn-link">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Not Fade Away / Live a deeply meaningful life -->
+  <section class="section-padding" style="background:#0e162e;">
+    <div class="max-w-1200 px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div class="fade-up" style="color:#fff;">
+        <p style="font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; opacity:0.8;">Live a deeply meaningful life</p>
+        <h2 class="section-title-lg mt-2 text-cream">BE A PART OF<br />REBECCA'S JOURNEY</h2>
+        <div class="divider-line"></div>
+        <p style="font-size:0.95rem; line-height:1.8; opacity:0.8;">Experience the resilience and light of Rebecca Alexander in "Not Fade Away: A Memoir of Senses Lost and Found". This award-winning memoir, currently in development to be made into a motion picture, is a compelling testament to seize every moment, even in the face of adversity. Join Rebecca's inspiring journey and embrace life with courage.</p>
+        <a href="https://amzn.to/3OfON0h" class="btn-primary-white mt-6" target="_blank">Read: Not Fade Away</a>
+      </div>
+      <div class="fade-up">
+        <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/de3d4915-9f02-4b10-90c5-bba80f7a056a/Rebecca-Alexander-Profile.jpg" alt="Rebecca Alexander" style="width:100%;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Breathe In Peace marquee -->
+  <section style="padding:30px 0; background:#fff; overflow:hidden;">
+    <div style="display:flex; white-space:nowrap; animation:scroll 30s linear infinite;">
+      <span class="breathe-text">BREATHE IN PEACE • BREATHE OUT FEAR • </span>
+      <span class="breathe-text">BREATHE IN PEACE • BREATHE OUT FEAR • </span>
+      <span class="breathe-text">BREATHE IN PEACE • BREATHE OUT FEAR • </span>
+      <span class="breathe-text">BREATHE IN PEACE • BREATHE OUT FEAR • </span>
+    </div>
+    <style>
+      @keyframes scroll {
+        0% { transform:translateX(0); }
+        100% { transform:translateX(-50%); }
+      }
+    </style>
+  </section>
+
+  <!-- Section 5: Awards -->
+  <section class="section-padding bg-white">
+    <div class="max-w-1200 px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div class="fade-up">
+        <p class="section-title-sm" style="opacity:0.6;">Positively impacting lives</p>
+        <h2 class="section-title-lg mt-2">AWARDS &amp; ACHIEVEMENTS</h2>
+        <div class="divider-line"></div>
+        <p style="font-size:0.95rem; line-height:1.8; opacity:0.8; margin-bottom:20px;">Rebecca Alexander has been honored with numerous awards for her expertise, dedication, and remarkable achievements.</p>
+        <ul style="list-style:none; padding:0;">
+          <li style="padding:8px 0; border-bottom:1px solid rgba(17,27,58,0.08); font-size:0.9rem;">► 2024 Anthem Award: Social Impact</li>
+          <li style="padding:8px 0; border-bottom:1px solid rgba(17,27,58,0.08); font-size:0.9rem;">► 2024 Catherine White Achievement Award - HeartShare</li>
+          <li style="padding:8px 0; border-bottom:1px solid rgba(17,27,58,0.08); font-size:0.9rem;">► 2021 Luminary Award - Future Vision Foundation</li>
+          <li style="padding:8px 0; border-bottom:1px solid rgba(17,27,58,0.08); font-size:0.9rem;">► 2019 Irving Berelson President's Award</li>
+        </ul>
+        <a href="#" class="btn-primary mt-6">View the Full List</a>
+      </div>
+      <div class="fade-up">
+        <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/f847f215-a683-4a96-b974-7471782813f4/Rebecca-Alexander-Lululemon-Workout.JPG" alt="Rebecca Alexander working out" style="width:100%;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: As Featured In -->
+  <section style="background:#111B3A; padding:50px 0;">
+    <div class="max-w-1200 px-6 text-center">
+      <p style="color:rgba(255,255,255,0.4); font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:30px;">As Featured In</p>
+      <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16">
+        <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/6e7dfbbe-3355-49c1-852d-4953550a1bbb/People-Magazine-Logo.png" alt="People" class="featured-logo" />
+        <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/8cd62ab7-7bae-45f7-8ff7-94ba42a80c5c/ESPN-Logo.png" alt="ESPN" class="featured-logo" />
+        <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/686fc972-d12a-4f55-9371-9a21be2adebf/TED-Logo.png" alt="TED" class="featured-logo" />
+        <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/4f93619b-91b3-4eb8-908d-e9a37a6806fe/Today-Show-Logo.png" alt="Today Show" class="featured-logo" />
+        <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/dc3838e0-9d7f-4c29-94ff-eb24c2a76fae/SHAPE-Logo.png" alt="SHAPE" class="featured-logo" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Usher Syndrome Society -->
+  <section class="section-padding bg-white">
+    <div class="max-w-1200 px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div class="fade-up">
+        <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/5eb9a571-3970-464a-ba0e-7e5cb417f738/Usher-Syndrome-Society-Rebecca-Alexander-Event.jpg" alt="Usher Syndrome Society Event" style="width:100%;" />
+      </div>
+      <div class="fade-up">
+        <p class="section-title-sm" style="opacity:0.6;">Awareness &amp; Advocacy</p>
+        <h2 class="section-title-lg mt-2">USHER SYNDROME SOCIETY</h2>
+        <div class="divider-line"></div>
+        <p style="font-size:0.95rem; line-height:1.8; opacity:0.8;">As a Board Director and volunteer for the Usher Syndrome Society, Rebecca accelerates the non-profit's mission to raise public awareness and funds for dedicated research for Usher syndrome, the most common genetic cause of combined and progressive blindness and deafness around the world. Rebecca was recently featured in the Every Second Counts Campaign that was broadcasted in Times Square.</p>
+        <a href="#" class="btn-primary mt-6">Support USH</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#111B3A; padding:60px 0 30px;">
+    <div class="max-w-1200 px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div class="footer-section">
+        <img src="https://images.squarespace-cdn.com/content/v1/660ebe7dcec4c977dae1c237/4c389c4f-fd76-4339-a07f-2940533bc97e/Rebecca-Alexander-Logo.png?format=1500w" alt="Rebecca Alexander" style="max-width:160px; margin-bottom:16px;" />
+        <p style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.2em; opacity:0.5; color:#fff; margin-bottom:4px;">Join Rebecca's Community</p>
+        <h2 style="font-size:1rem; font-weight:800; text-transform:uppercase; letter-spacing:0.03em; color:#E6D8C3; margin-bottom:12px;">FOLLOW REBECCA</h2>
+        <div style="display:flex; gap:14px; margin-bottom:0; font-size:1.2rem; color:rgba(255,255,255,0.6);">
+          <a href="#" style="color:rgba(255,255,255,0.6);"><i class="fab fa-instagram"></i></a>
+          <a href="#" style="color:rgba(255,255,255,0.6);"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" style="color:rgba(255,255,255,0.6);"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" style="color:rgba(255,255,255,0.6);"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="#">USH Society</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#">Speaking</a></li>
+          <li><a href="#">Insight Training</a></li>
+          <li><a href="#">Psychotherapy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h5>About</h5>
+        <ul>
+          <li><a href="#">Rebecca Alexander</a></li>
+          <li><a href="#">Usher Syndrome</a></li>
+          <li><a href="#">Not Fade Away</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); max-width:1200px; margin:40px auto 20px;" />
+    <div class="max-w-1200 px-6 text-center">
+      <p style="color:rgba(255,255,255,0.3); font-size:0.8rem;">&copy; @Powed By Zeeshan Javed</p>
+    </div>
+  </footer>
+
+  <script>
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 80) { navbar.style.background = 'rgba(17,27,58,0.98)'; }
+      else { navbar.style.background = 'rgba(17,27,58,0.95)'; }
+    });
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('mobileMenu').style.display = 'flex';
+    });
+    document.getElementById('mobileCloseBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('mobileMenu').style.display = 'none';
+    });
+    var faders = document.querySelectorAll('.fade-up');
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.15 });
+    faders.forEach(function(el) { obs.observe(el); });
+  </script>
+</body>
+</html>
